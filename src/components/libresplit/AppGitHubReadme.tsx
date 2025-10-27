@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Markdown from "react-markdown";
+
 export function AppGitHubReadme() {
   const [readme, setReadme] = useState<string>("Loading...");
 
@@ -22,7 +24,7 @@ export function AppGitHubReadme() {
 
   return (
     <div>
-      <p>{readme}</p>
+      <Markdown>{readme}</Markdown>
     </div>
   );
 }
