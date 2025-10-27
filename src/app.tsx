@@ -1,10 +1,11 @@
+import { AppNav } from "./components/libresplit/AppNav";
 import AppRouter from "./router";
 
 export default function App() {
   return (
     <div>
       <div>
-        <p>Placeholder for Layout component.</p>
+        <AppNav />
       </div>
       <div>
         <AppRouter />
