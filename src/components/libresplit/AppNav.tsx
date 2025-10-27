@@ -41,14 +41,16 @@ export function AppNav() {
 
 function LeftNav() {
   return (
-    <div className="flex items-center gap-2">
-      <img
-        src="https://raw.githubusercontent.com/LibreSplit/LibreSplit/refs/heads/main/assets/libresplit.svg"
-        alt="LibreSplit Logo"
-        className="w-8"
-      />
-      <span className="text-xl font-semibold">LibreSplit</span>
-    </div>
+    <Link to="/">
+      <div className="flex items-center gap-2">
+        <img
+          src="https://raw.githubusercontent.com/LibreSplit/LibreSplit/refs/heads/main/assets/libresplit.svg"
+          alt="LibreSplit Logo"
+          className="w-8"
+        />
+        <span className="text-xl font-semibold">LibreSplit</span>
+      </div>
+    </Link>
   );
 }
 
