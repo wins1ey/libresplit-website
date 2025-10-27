@@ -1,3 +1,10 @@
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
-  return <h1 className="text-blue-500">LibreSplit</h1>;
+  return (
+    <div>
+      <h1>LibreSplit</h1>
+      <Button>Test</Button>
+    </div>
+  );
 }
