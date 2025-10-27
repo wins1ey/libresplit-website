@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { AppThemeToggleButton } from "@/components/libresplit/AppThemeToggleButton";
 
 export default function Home() {
   return (
     <div>
       <h1>LibreSplit</h1>
-      <Button>Test</Button>
+      <AppThemeToggleButton />
     </div>
   );
 }
