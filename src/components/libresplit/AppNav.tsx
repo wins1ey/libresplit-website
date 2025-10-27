@@ -1,6 +1,13 @@
 import { Button } from "../ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../ui/navigation-menu";
 import { AppThemeToggleButton } from "./AppThemeToggleButton";
 import { Github } from "lucide-react";
+import { Link } from "react-router";
 
 export function AppNav() {
   return (
@@ -8,6 +15,16 @@ export function AppNav() {
       <div className="flex items-center">
         <LeftNav />
       </div>
+
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link to="/">Home</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
 
       <div className="flex items-center">
         <RightNav />
