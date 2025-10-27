@@ -1,4 +1,4 @@
-import Home from "./app/Home";
+import Home from "./app/home";
 import { Route, Routes } from "react-router";
 
 export default function AppRouter() {
