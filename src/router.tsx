@@ -1,5 +1,5 @@
 import { Converter } from "./app/converter";
-import Home from "./app/home";
+import { Home } from "./app/home";
 import { Route, Routes } from "react-router";
 
 export default function AppRouter() {
