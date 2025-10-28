@@ -44,6 +44,14 @@ export function Markdown({ content }: { content: string }) {
       case "link":
         return <a href={node.url}>{node.children.map(renderNode)}</a>;
 
+      case "code":
+        return (
+          <div>
+            <h1>{node.lang}</h1>
+            <p>{node.value}</p>
+          </div>
+        );
+
       default:
         return node.children?.map(renderNode);
     }
