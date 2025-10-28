@@ -24,6 +24,12 @@ export function Markdown({ content }: { content: string }) {
       case "paragraph":
         return <p>{renderChildren(node)}</p>;
 
+      // Handles bold or italic text.
+      case "strong":
+        return <p className="font-bold">{renderChildren(node)}</p>;
+      case "emphasis":
+        return <p className="italic">{renderChildren(node)}</p>;
+
       // Handles headings #, ## and ###.
       case "heading":
         switch (node.depth) {
