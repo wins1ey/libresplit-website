@@ -1,7 +1,5 @@
+import { MarkdownPage } from "./markdownpage";
+
 export function Home() {
-  return (
-    <div>
-      <h1>LibreSplit</h1>
-    </div>
-  );
+  return <MarkdownPage mdPath="../mds/home.md" />;
 }
