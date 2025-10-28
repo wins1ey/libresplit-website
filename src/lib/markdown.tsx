@@ -1,4 +1,5 @@
 import { fromMarkdown } from "mdast-util-from-markdown";
+import { CodeBlock } from "react-code-block";
 
 export function Markdown({ content }: { content: string }) {
   const tree = fromMarkdown(content);
@@ -47,8 +48,13 @@ export function Markdown({ content }: { content: string }) {
       case "code":
         return (
           <div>
-            <h1>{node.lang}</h1>
-            <p>{node.value}</p>
+            <CodeBlock code={node.value} language={node.lang}>
+              <CodeBlock.Code>
+                <CodeBlock.LineContent>
+                  <CodeBlock.Token />
+                </CodeBlock.LineContent>
+              </CodeBlock.Code>
+            </CodeBlock>
           </div>
         );
 
