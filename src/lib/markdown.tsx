@@ -11,6 +11,7 @@ export function Markdown({ content }: { content: string }) {
       case "paragraph":
         return <p>{node.children.map(renderNode)}</p>;
 
+      // Handles headings #, ## and ###.
       case "heading":
         switch (node.depth) {
           case 1:
@@ -38,6 +39,10 @@ export function Markdown({ content }: { content: string }) {
               </div>
             );
         }
+
+      // Handles links in markdown [text](url).
+      case "link":
+        return <a href={node.url}>{node.children.map(renderNode)}</a>;
 
       default:
         return node.children?.map(renderNode);
