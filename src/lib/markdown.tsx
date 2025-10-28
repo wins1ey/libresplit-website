@@ -49,6 +49,14 @@ export function Markdown({ content }: { content: string }) {
             return <div className="text-gray-700">{renderChildren(node)}</div>;
         }
 
+      // Handle block quotes.
+      case "blockquote":
+        return (
+          <blockquote className="border-l-4 border-gray-300 pl-4 text-gray-700 italic">
+            {node.children.map(renderNode)}
+          </blockquote>
+        );
+
       // Handles links in markdown [text](url).
       case "link":
         return <a href={node.url}>{renderChildren(node)}</a>;
@@ -86,6 +94,10 @@ export function Markdown({ content }: { content: string }) {
         );
       case "inlineCode":
         return <p>{node.value}</p>;
+
+      // Handle thematic breaks.
+      case "thematicBreak":
+        return <hr className="my-4 border-gray-300" />;
 
       default:
         return renderChildren(node);
