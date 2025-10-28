@@ -7,14 +7,32 @@ export function MarkdownToJSX({ content }: { content: string }) {
     switch (node.type) {
       case "text":
         return node.value;
+
       case "paragraph":
         return <p className="text-red-500">{node.children.map(renderNode)}</p>;
+
       case "heading":
-        return (
-          <h1 className="text-xl text-blue-500">
-            {node.children.map(renderNode)}
-          </h1>
-        );
+        switch (node.depth) {
+          case 1:
+            return (
+              <h1 className="text-3xl font-bold text-blue-500">
+                {node.children.map(renderNode)}
+              </h1>
+            );
+          case 2:
+            return (
+              <h2 className="text-2xl font-semibold text-green-500">
+                {node.children.map(renderNode)}
+              </h2>
+            );
+          case 3:
+            return (
+              <h3 className="text-xl font-medium text-yellow-500">
+                {node.children.map(renderNode)}
+              </h3>
+            );
+        }
+
       default:
         return node.children?.map(renderNode);
     }
