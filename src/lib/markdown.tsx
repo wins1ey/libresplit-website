@@ -5,10 +5,16 @@ export function MarkdownToJSX({ content }: { content: string }) {
 
   function renderNode(node: any): React.ReactNode {
     switch (node.type) {
-      case "paragraph":
-        return <p className="text-red-500">{node.children.map(renderNode)}</p>;
       case "text":
         return node.value;
+      case "paragraph":
+        return <p className="text-red-500">{node.children.map(renderNode)}</p>;
+      case "heading":
+        return (
+          <h1 className="text-xl text-blue-500">
+            {node.children.map(renderNode)}
+          </h1>
+        );
       default:
         return node.children?.map(renderNode);
     }
