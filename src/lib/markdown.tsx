@@ -1,6 +1,6 @@
 import { fromMarkdown } from "mdast-util-from-markdown";
 
-export function MarkdownToJSX({ content }: { content: string }) {
+export function Markdown({ content }: { content: string }) {
   const tree = fromMarkdown(content);
 
   function renderNode(node: any): React.ReactNode {

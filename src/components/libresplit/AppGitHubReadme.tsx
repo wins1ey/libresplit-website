@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { MarkdownToJSX } from "@/lib/markdown";
+import { Markdown } from "@/lib/markdown";
 
 export function AppGitHubReadme() {
   const [readme, setReadme] = useState<string>("Loading...");
@@ -24,7 +24,7 @@ export function AppGitHubReadme() {
 
   return (
     <div>
-      <MarkdownToJSX content={readme} />
+      <Markdown content={readme} />
     </div>
   );
 }
