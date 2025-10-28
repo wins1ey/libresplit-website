@@ -45,6 +45,24 @@ export function Markdown({ content }: { content: string }) {
       case "link":
         return <a href={node.url}>{node.children.map(renderNode)}</a>;
 
+      // Handles lists.
+      case "list": {
+        // Select between ol and ul. Apply tailwind styling.
+        const ListTag = node.ordered ? "ol" : "ul";
+        const cls = node.ordered ? "list-decimal ml-6" : "list-disc ml-6";
+        // Start only applys to ol(s).
+        const startProps =
+          node.ordered && node.start ? { start: node.start } : {};
+        return (
+          <ListTag className={cls} {...startProps}>
+            {node.children.map(renderNode)}
+          </ListTag>
+        );
+      }
+      case "listItem": {
+        return <li>{node.children.map(renderNode)}</li>;
+      }
+
       case "code":
         return (
           <div>
@@ -57,6 +75,9 @@ export function Markdown({ content }: { content: string }) {
             </CodeBlock>
           </div>
         );
+
+      case "inlineCode":
+        return <p>{node.value}</p>;
 
       default:
         return node.children?.map(renderNode);
