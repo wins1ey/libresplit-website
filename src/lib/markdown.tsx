@@ -31,6 +31,12 @@ export function Markdown({ content }: { content: string }) {
                 {node.children.map(renderNode)}
               </h3>
             );
+          default:
+            return (
+              <div className="text-gray-700">
+                {node.children.map(renderNode)}
+              </div>
+            );
         }
 
       default:
