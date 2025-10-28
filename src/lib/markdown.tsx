@@ -1,49 +1,51 @@
+import React from "react";
+
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { CodeBlock } from "react-code-block";
 
 export function Markdown({ content }: { content: string }) {
   const tree = fromMarkdown(content);
 
+  function renderChildren(node: any): React.ReactNode | null {
+    if (!node.children) {
+      return null;
+    }
+    return node.children.map((child: any, i: number) => (
+      <React.Fragment key={i}>{renderNode(child)}</React.Fragment>
+    ));
+  }
+
   function renderNode(node: any): React.ReactNode {
     switch (node.type) {
       case "text":
         return node.value;
 
+      // Handles paragraph text.
       case "paragraph":
-        return <p>{node.children.map(renderNode)}</p>;
+        return <p>{renderChildren(node)}</p>;
 
       // Handles headings #, ## and ###.
       case "heading":
         switch (node.depth) {
           case 1:
             return (
-              <h1 className="text-3xl font-bold">
-                {node.children.map(renderNode)}
-              </h1>
+              <h1 className="text-3xl font-bold">{renderChildren(node)}</h1>
             );
           case 2:
             return (
-              <h2 className="text-2xl font-semibold">
-                {node.children.map(renderNode)}
-              </h2>
+              <h2 className="text-2xl font-semibold">{renderChildren(node)}</h2>
             );
           case 3:
             return (
-              <h3 className="text-xl font-medium">
-                {node.children.map(renderNode)}
-              </h3>
+              <h3 className="text-xl font-medium">{renderChildren(node)}</h3>
             );
           default:
-            return (
-              <div className="text-gray-700">
-                {node.children.map(renderNode)}
-              </div>
-            );
+            return <div className="text-gray-700">{renderChildren(node)}</div>;
         }
 
       // Handles links in markdown [text](url).
       case "link":
-        return <a href={node.url}>{node.children.map(renderNode)}</a>;
+        return <a href={node.url}>{renderChildren(node)}</a>;
 
       // Handles lists.
       case "list": {
@@ -55,14 +57,15 @@ export function Markdown({ content }: { content: string }) {
           node.ordered && node.start ? { start: node.start } : {};
         return (
           <ListTag className={cls} {...startProps}>
-            {node.children.map(renderNode)}
+            {renderChildren(node)}
           </ListTag>
         );
       }
       case "listItem": {
-        return <li>{node.children.map(renderNode)}</li>;
+        return <li>{renderChildren(node)}</li>;
       }
 
+      // Handles code blocks.
       case "code":
         return (
           <div>
@@ -75,12 +78,11 @@ export function Markdown({ content }: { content: string }) {
             </CodeBlock>
           </div>
         );
-
       case "inlineCode":
         return <p>{node.value}</p>;
 
       default:
-        return node.children?.map(renderNode);
+        return renderChildren(node);
     }
   }
 
