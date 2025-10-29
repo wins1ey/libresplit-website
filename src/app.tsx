@@ -7,7 +7,7 @@ export default function App() {
       <div>
         <AppNav />
       </div>
-      <div>
+      <div className="px-2">
         <AppRouter />
       </div>
     </div>
