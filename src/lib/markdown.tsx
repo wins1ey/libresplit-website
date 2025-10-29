@@ -42,16 +42,18 @@ export function Markdown({ content }: { content: string }) {
           case 1:
             return (
               <div className="flex w-screen items-center justify-center">
-                <h1 className="text-3xl font-bold">{renderChildren(node)}</h1>
+                <h1 className="text-3xl font-extrabold">
+                  {renderChildren(node)}
+                </h1>
               </div>
             );
           case 2:
             return (
-              <h2 className="text-2xl font-semibold">{renderChildren(node)}</h2>
+              <h2 className="text-2xl font-bold">{renderChildren(node)}</h2>
             );
           case 3:
             return (
-              <h3 className="text-xl font-medium">{renderChildren(node)}</h3>
+              <h3 className="text-xl font-semibold">{renderChildren(node)}</h3>
             );
           default:
             return <div className="text-gray-700">{renderChildren(node)}</div>;
