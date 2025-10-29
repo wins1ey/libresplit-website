@@ -153,5 +153,5 @@ export function Markdown({ content }: { content: string }) {
     }
   }
 
-  return <div>{tree.children.map(renderNode)}</div>;
+  return <div className="space-y-6">{tree.children.map(renderNode)}</div>;
 }
