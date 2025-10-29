@@ -4,6 +4,7 @@ import { Markdown } from "@/lib/markdown";
 
 export function AppGitHubReadme() {
   const [readme, setReadme] = useState<string>("Loading...");
+  const [isLoading, setIsLoading] = useState(true);
 
   const urlReadme =
     "https://raw.githubusercontent.com/LibreSplit/LibreSplit/refs/heads/main/README.md";
@@ -12,15 +13,21 @@ export function AppGitHubReadme() {
   useEffect(() => {
     fetch(urlReadme)
       .then((res) => {
-        // Check for HTTP error.
-        if (!res.ok) throw new Error("HTTP Error! Status: ${res.status}");
+        if (!res.ok) throw new Error(`HTTP Error! Status: ${res.status}`);
         return res.text();
       })
       .then((text) => setReadme(text))
-      .catch(() => {
-        setReadme("Failed to load README from GitHub.");
-      });
+      .catch(() => setReadme("Failed to load README from GitHub."))
+      .finally(() => setIsLoading(false));
   }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        Big Loading
+      </div>
+    );
+  }
 
   return (
     <div>
