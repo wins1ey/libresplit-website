@@ -114,6 +114,30 @@ export function Markdown({ content }: { content: string }) {
       case "inlineCode":
         return <p>{node.value}</p>;
 
+      // Handle html tags to catch images.
+      case "html": {
+        const imgs = [
+          ...node.value.matchAll(
+            /<img\s+[^>]*src=["']([^"']+)["'][^>]*?(?:alt=["']([^"']*)["'])?[^>]*>/gi,
+          ),
+        ];
+        if (imgs.length) {
+          return (
+            <div className="my-4 flex flex-wrap justify-center gap-4">
+              {imgs.map((m: RegExpMatchArray, i: number) => (
+                <img
+                  key={i}
+                  src={m[1]}
+                  alt={m[2] ?? ""}
+                  className="h-auto max-w-full rounded-lg"
+                />
+              ))}
+            </div>
+          );
+        }
+        return null;
+      }
+
       // Handle thematic breaks.
       case "thematicBreak":
         return <hr className="my-4 border-gray-300" />;
