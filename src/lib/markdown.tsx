@@ -1,10 +1,10 @@
 import React from "react";
 
+import { AppMarkdownCodeBlock } from "@/components/libresplit/AppMarkdownCodeBlock";
 import { AppMarkdownTable } from "@/components/libresplit/AppMarkdownTable";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { gfmFromMarkdown } from "mdast-util-gfm";
 import { gfm } from "micromark-extension-gfm";
-import { CodeBlock } from "react-code-block";
 
 export function Markdown({ content }: { content: string }) {
   const tree = fromMarkdown(content, {
@@ -108,17 +108,7 @@ export function Markdown({ content }: { content: string }) {
 
       // Handles code blocks.
       case "code":
-        return (
-          <div>
-            <CodeBlock code={node.value} language={node.lang}>
-              <CodeBlock.Code>
-                <CodeBlock.LineContent>
-                  <CodeBlock.Token />
-                </CodeBlock.LineContent>
-              </CodeBlock.Code>
-            </CodeBlock>
-          </div>
-        );
+        return <AppMarkdownCodeBlock code={node.value} language={node.lang} />;
       case "inlineCode":
         return <p>{node.value}</p>;
 
