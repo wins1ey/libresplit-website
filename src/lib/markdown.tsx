@@ -41,7 +41,9 @@ export function Markdown({ content }: { content: string }) {
         switch (node.depth) {
           case 1:
             return (
-              <h1 className="text-3xl font-bold">{renderChildren(node)}</h1>
+              <div className="flex w-screen items-center justify-center">
+                <h1 className="text-3xl font-bold">{renderChildren(node)}</h1>
+              </div>
             );
           case 2:
             return (
