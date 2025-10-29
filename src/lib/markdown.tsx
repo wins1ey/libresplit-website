@@ -67,7 +67,11 @@ export function Markdown({ content }: { content: string }) {
 
       // Handles links in markdown [text](url).
       case "link":
-        return <a href={node.url}>{renderChildren(node)}</a>;
+        return (
+          <a className="text-blue-300" href={node.url}>
+            {renderChildren(node)}
+          </a>
+        );
 
       // Handles lists.
       case "list": {
