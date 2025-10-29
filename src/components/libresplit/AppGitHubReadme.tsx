@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { AppLoading } from "./AppLoading";
 import { Markdown } from "@/lib/markdown";
 
 export function AppGitHubReadme() {
@@ -22,11 +23,7 @@ export function AppGitHubReadme() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div>
-        Big Loading
-      </div>
-    );
+    return <AppLoading />;
   }
 
   return (
