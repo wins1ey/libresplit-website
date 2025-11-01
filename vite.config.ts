@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      lsconv: path.resolve(__dirname, "wasm/lsconv/pkg/lsconv.js")
     },
   },
 });
